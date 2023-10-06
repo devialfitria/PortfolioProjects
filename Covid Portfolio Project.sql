@@ -148,25 +148,25 @@
 
 --VIEW
 
-CREATE VIEW PercentPopulationVaccinated as
-SELECT 
-	dea.continent, 
-	dea.location, 
-	dea.date, 
-	dea.population, 
-	vac.new_vaccinations,
-	SUM(cast(vac.new_vaccinations as int)) OVER (PARTITION BY dea.location ORDER BY dea.location, dea.date) as rolling_people_vaccinated
-FROM
-	PortfolioProject..CovidDeaths dea
-JOIN
-	PortfolioProject..CovidVaccinations vac
-ON
-	dea.location = vac.location and
-	dea.date = vac.date
-WHERE
-	dea.continent is not null
+--CREATE VIEW PercentPopulationVaccinated as
+--SELECT 
+--	dea.continent, 
+--	dea.location, 
+--	dea.date, 
+--	dea.population, 
+--	vac.new_vaccinations,
+--	SUM(cast(vac.new_vaccinations as int)) OVER (PARTITION BY dea.location ORDER BY dea.location, dea.date) as rolling_people_vaccinated
+--FROM
+--	PortfolioProject..CovidDeaths dea
+--JOIN
+--	PortfolioProject..CovidVaccinations vac
+--ON
+--	dea.location = vac.location and
+--	dea.date = vac.date
+--WHERE
+--	dea.continent is not null
 
-SELECT
-	*
-FROM
-	PercentPopulationVaccinated
+--SELECT
+--	*
+--FROM
+--	PercentPopulationVaccinated
